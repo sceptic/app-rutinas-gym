@@ -1,0 +1,18 @@
+{% macro input(label, type, name, id, value) %}
+	<label for='{{id}}'>{{label}}</label>
+	<input class='form-control' type='{{type}}' name="{{name}}" id='{{id}}' value='{{value}}'/>
+{% endmacro %}
+
+
+{% macro textarea(label, type, name, id, value) %}
+	<label for='{{id}}'>{{label}}</label>
+	<textarea class='form-control tinymce' type='{{type}}' name='{{name}}' id='{{id}}'/>{{value}}</textarea>
+{% endmacro %}
+
+
+{%macro submit(text)%}
+<br/>
+<p><button type="submit"  id='submit' class="btn btn-default">{{text}}</button></p>
+
+{% endmacro %}
+

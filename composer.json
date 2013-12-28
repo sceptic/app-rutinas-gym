@@ -1,0 +1,12 @@
+{
+    "name": "sceptic/apps test",
+    "authors": [
+        {
+            "name": "Adrian MF",
+            "email": "sceptic@hotmail.es"
+        }
+    ],
+    "require": {
+
+    }
+}
