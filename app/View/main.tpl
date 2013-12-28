@@ -42,7 +42,7 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
+              <span class="sr-only">Menu</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -52,21 +52,37 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="/">Inicio</a></li>
-              <li><a href="#about">Crear rutina</a></li>
-              <li><a href="#contact">Contact</a></li>
+              {% if user_logged %}
+              <li><a href="/crear-rutina">Crear rutina</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+                  <li><a href="/">Mis rutinas</a></li>
                 </ul>
               </li>
+              {%else%}
+                  <li><a href="/registro">Resgistrarme</a></li>
+               {%endif%}
+               <li><a href="http://cv.phpymas.com">Contacto</a></li>
             </ul>
+            {% if user_logged%}
+            <div  method='post' class="navbar-form navbar-right">
+               
+              <h5>Vienbenido {{user_logged.Autor.nombre}}!</h5>
+ 
+            </div>
+            {%else%}
+            <form method='post' class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" name='email_login' placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" name='password_login' placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+            {%endif%}
+            
           </div><!--/.nav-collapse -->
         </div>
       </div>

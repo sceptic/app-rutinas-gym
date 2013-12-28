@@ -29,7 +29,8 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-
+	Router::connect('/crear-rutina', array('controller' => 'Entrenamientos', 'action' => 'add'));
+	Router::connect('/registro', array('controller' => 'Autors', 'action' => 'registro'));
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

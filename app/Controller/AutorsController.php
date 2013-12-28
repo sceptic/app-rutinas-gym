@@ -9,14 +9,11 @@ App::uses('AppController', 'Controller');
 class AutorsController extends AppController {
 
 
+	public function beforeFilter() {
+		$this->Auth->allow();
+	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function active($name= null, $token = null) {
 		
 			//
@@ -30,11 +27,8 @@ class AutorsController extends AppController {
 		$this->set('autor',$autor);
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
+
 	public function registro() {
 		if ($this->request->is('post')) {
 			$this->request->data['Autor']['password'] = md5(sha1($this->request->data['Autor']['password']));

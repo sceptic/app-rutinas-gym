@@ -32,26 +32,60 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $viewClass  = 'TwigView.Twig';
-	
-	function rrmdir($dir) { 
+	public $components = array(
+	'DebugKit.Toolbar',
+	'RequestHandler',
+	'Session',
+	'Auth' => array(
+		'loginAction' => '/',
+		'loginRedirect' => array('controller' => 'Entrenamientos', 'action' => 'add'), 
+		'logoutRedirect' => '/',
+	'authenticate' => array(
+	'Form' => array(
+	'userModel' => 'Autor'
+	)
+	)
+	)
+	);
+
+    protected $current_user;
+	protected $current_user_id;
+
+	public function rrmdir($dir) { 
 	  foreach(glob($dir . '/*') as $file) { 
 	    if(is_dir($file)) $this->rrmdir($file); else unlink($file); 
 	  } @rmdir($dir); 
 	}
 
 	public function beforeFilter() {
-		$dir= APP .'Plugin' . DS . 'TwigView' . DS . 'tmp' . DS . 'views';
-		  
+		$dir= APP .'Plugin' . DS . 'TwigView' . DS . 'tmp' . DS . 'views';  
     	$this->rrmdir($dir);; 
     	parent::beforeFilter();
+
+		$this->loadModel('Autor');
+    	if ($this->request->is('post')) {
+			$data = $this->request->data;
+			if(isset($data['email_login']) && isset($data['password_login']))
+			{
+				
+				$user= $this->Autor->find('first', array('conditions'=>array('Autor.password'=> md5(sha1($data['password_login'])), 'Autor.email' => $data['email_login'])));
+				$this->set(compact('data'));	
+				$this->Auth->login($user);
+			}
+		}
+
+		$myUser =  $this->Auth->user();
+		if(isset($myUser['Autor']))
+		{
+			$user=$this->Autor->findById($myUser['Autor']['id']);
+			$this->current_user = $user;
+			$this->current_user_id=$user['Autor']['id'];
+			$this->set('user_logged',$this->current_user);
+		}
         
   	}
 
-	public $components = array(
-	'DebugKit.Toolbar',
-	'RequestHandler',
-	'Session'
-	);
+	
 
 	public function afterFilter() {
 		
