@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     //InitMisc ();
     
     //InitCufon ();	
@@ -18,7 +17,7 @@ $(document).ready(function () {
 	
 	// InitFancybox ();
 	
-    InitWYSIWYG ();
+   // InitWYSIWYG ();
         
    	// InitQuickEdit ();
     
@@ -53,9 +52,6 @@ function InitTables () {
 			{ "bSortable": false },
 			null,
 			null,
-			null,
-			null,
-			null,
 			null
 		]	
 	});
@@ -67,47 +63,6 @@ function InitTables () {
  * WYSIWYG
  * *********************************************************************/
 function InitWYSIWYG () {
-	$('.jwysiwyg').wysiwyg({
-		controls: {
-			strikeThrough : { visible : true },
-			underline     : { visible : true },
-
-			separator00 : { visible : true },
-
-			justifyLeft   : { visible : true },
-			justifyCenter : { visible : true },
-			justifyRight  : { visible : true },
-			justifyFull   : { visible : true },
-
-			separator01 : { visible : true },
-
-			indent  : { visible : true },
-			outdent : { visible : true },
-
-			separator02 : { visible : true },
-
-			subscript   : { visible : true },
-			superscript : { visible : true },
-
-			separator03 : { visible : true },
-
-			undo : { visible : true },
-			redo : { visible : true },
-
-			separator04 : { visible : true },
-
-			insertOrderedList    : { visible : true },
-			insertUnorderedList  : { visible : true },
-			insertHorizontalRule : { visible : true },
-
-			separator07 : { visible : true },
-
-			cut   : { visible : true },
-			copy  : { visible : true },
-			paste : { visible : true }
-		}
-	});
-	
 	$('textarea.tinymce').tinymce({
 		// Location of TinyMCE script
 		script_url : '/js/tiny_mce/tiny_mce.js',
@@ -116,13 +71,13 @@ function InitWYSIWYG () {
 		plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
 
 		// Theme options
-		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect",
 		// theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough",
 		//theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist",
-		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink",
-		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-		//theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap",
-		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
+		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|, bullist,numlist,|,outdent,indent,blockquote,|,hr",
+		//theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+		theme_advanced_buttons3 : "",
+		//theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
 		theme_advanced_toolbar_location : "top",
 		theme_advanced_toolbar_align : "left",
 		theme_advanced_statusbar_location : "bottom",
@@ -143,6 +98,7 @@ function InitWYSIWYG () {
 			staffid : "991234"
 		}
 	});
+	//tinymce.get('data[Entrenamiento][content]').setContent('<p>This is my new content!</p>');
 }
 
 

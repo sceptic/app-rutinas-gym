@@ -4,8 +4,8 @@
 <h1>Rutinas creadas</h1>
 {% endblock %}	
 {% block content %}
-<table  style='display:block; clear:both;' class="style1 datatableFacturacion">
-                                <caption>Historial Facturas</caption>
+<table class="style1 datatable">
+                                <caption>Entrenamientos usuarios</caption>
 						<thead>
 							<tr>
 										<th>Rutina</th>

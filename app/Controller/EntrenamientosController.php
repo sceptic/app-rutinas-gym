@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Entrenos Controller
  *
@@ -32,12 +33,22 @@ class EntrenamientosController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->Entreno->exists($id)) {
-			throw new NotFoundException(__('Invalid entreno'));
-		}
-		$options = array('conditions' => array('Entreno.' . $this->Entreno->primaryKey => $id));
-		$this->set('entreno', $this->Entreno->find('first', $options));
+	public function entrenamiento($id = null) {
+
+		$data = $this->Entrenamiento->read(null, $id);
+
+		if(!$data) $this->redirect('/');
+
+		$this->set('d', $data['Entrenamiento']);
+
+		$params = array(
+            'download' => false,
+            'name' => 'entrenamiento.pdf',
+            'paperOrientation' => 'portrait',
+            'paperSize' => 'legal'
+        );
+        $this->layout = 'default'; 
+        $this->set($params);	
 	}
 
 /**
@@ -47,11 +58,14 @@ class EntrenamientosController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->request->data['Entrenamiento']['autor_id'] = $this->current_user_id;
 			$this->Entrenamiento->create();
 			if ($this->Entrenamiento->save($this->request->data)) {
-				
+				$this->set('data', '');
+				$this->set('save', 1);
 			}
 		}
+		$this->render('info');
 	}
 
 /**
@@ -62,20 +76,32 @@ class EntrenamientosController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if (!$this->Entreno->exists($id)) {
-			throw new NotFoundException(__('Invalid entreno'));
+		if (!$this->Entrenamiento->exists($id)) {
+			$this->redirect('/');
 		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Entreno->save($this->request->data)) {
-				return $this->flash(__('The entreno has been saved.'), array('action' => 'index'));
+
+		$conditions=array('autor_id'=>$this->current_user_id, 'Entrenamiento.id'=>$id);
+		$data = $this->Entrenamiento->find('first', array('conditions'=> $conditions ));
+
+		if ($data){
+			if($this->request->is('post'))
+			{
+				$this->Entrenamiento->read(null, $id);
+				if ($this->Entrenamiento->save($this->request->data)) {
+					//$this->set('data', '');
+					$save = 2;
+					$data = $this->request->data;
+				}
+
 			}
-		} else {
-			$options = array('conditions' => array('Entreno.' . $this->Entreno->primaryKey => $id));
-			$this->request->data = $this->Entreno->find('first', $options);
+		}else{
+			$this->redirect('/');
 		}
-		$autors = $this->Entreno->Autor->find('list');
-		$this->set(compact('autors'));
+		$this->set(compact('data','save'));
+		$this->render('info');
 	}
+
+
 
 /**
  * delete method
@@ -95,4 +121,10 @@ class EntrenamientosController extends AppController {
 		} else {
 			return $this->flash(__('The entreno could not be deleted. Please, try again.'), array('action' => 'index'));
 		}
-	}}
+	}
+
+
+
+
+
+}

@@ -19,6 +19,7 @@
  */
 App::uses('AppController', 'Controller');
 
+
 /**
  * Static content controller
  *
@@ -72,5 +73,9 @@ class PagesController extends AppController {
 			}
 			throw new NotFoundException();
 		}
+	
 	}
-}
+
+
+}//endClass
+

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Autors Controller
  *
@@ -10,6 +11,7 @@ class AutorsController extends AppController {
 
 
 	public function beforeFilter() {
+		parent::beforeFilter();
 		$this->Auth->allow();
 	}
 
@@ -31,13 +33,43 @@ class AutorsController extends AppController {
 
 	public function registro() {
 		if ($this->request->is('post')) {
-			$this->request->data['Autor']['password'] = md5(sha1($this->request->data['Autor']['password']));
-			$this->request->data['Autor']['token'] = md5(sha1(time().$this->request->data['Autor']['password'].$this->request->data['Autor']['password']));
-			$this->Autor->create();
-			if ($this->Autor->save($this->request->data)) {
-				$this->redirect('/');
-			}
+			$data = $this->request->data;
+			
+
+			$existMail= $this->Autor->findByEmail($data['Autor']['email']);
+
+			if(!$existMail)
+			{
+
+				$data['Autor']['password'] = md5(sha1($data['Autor']['password']));
+				$data['Autor']['token'] = md5(sha1(time().$data['Autor']['password'].$data['Autor']['password']));
+				$this->Autor->create();
+				if ($this->Autor->save($data)) {
+					
+					//Enviar email para confirmar cuenta
+					$cakeEmail = new CakeEmail('gmail');
+					$cakeEmail->template('contacto')
+					->emailFormat('html')
+					->subject('Activar cuenta')
+					->to($data['Autor']['email'])
+					->from('adriswbm@gmail.com');
+					$cakeEmail->viewVars(
+					array('message' => FULL_BASE_URL.'/'.'autors/active/'.$data['Autor']['nombre'].'/'.$data['Autor']['token'],
+					)
+					);
+
+					$cakeEmail->send();
+
+				}
+					$this->redirect('/');
+				}else{
+				
+					$this->set('error', '1');
+			}	
 		}
 	}
 
-}
+
+
+}//endClass
+

@@ -65,6 +65,7 @@ class AppController extends Controller {
 		$this->loadModel('Autor');
     	if ($this->request->is('post')) {
 			$data = $this->request->data;
+			$this->set('data', $data);
 			if(isset($data['email_login']) && isset($data['password_login']))
 			{
 				
@@ -81,6 +82,8 @@ class AppController extends Controller {
 			$this->current_user = $user;
 			$this->current_user_id=$user['Autor']['id'];
 			$this->set('user_logged',$this->current_user);
+			$this->set('user', ':'.$this->current_user_id);
+
 		}
         
   	}

@@ -31,12 +31,16 @@
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/crear-rutina', array('controller' => 'Entrenamientos', 'action' => 'add'));
 	Router::connect('/registro', array('controller' => 'Autors', 'action' => 'registro'));
+
+	Router::parseExtensions('csv'); 
+	Router::parseExtensions('pdf');
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
  */
 	CakePlugin::routes();
 
+	
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.

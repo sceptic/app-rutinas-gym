@@ -97,6 +97,7 @@ Configure::write('Dispatcher.filters', array(
 App::uses('CakeLog', 'Log');
 
 CakePlugin::load('DebugKit');
+CakePlugin::load('Dompdf', array('bootstrap' => true));
 CakeLog::config('debug', array(
 	'engine' => 'File',
 	'types' => array('notice', 'info', 'debug'),

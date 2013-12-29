@@ -25,8 +25,9 @@ class Autor extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Ejercicio' => array(
-			'className' => 'Ejercicio',
+
+		'Entrenamiento' => array(
+			'className' => 'Entrenamiento',
 			'foreignKey' => 'autor_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -38,32 +39,6 @@ class Autor extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Entreno' => array(
-			'className' => 'Entreno',
-			'foreignKey' => 'autor_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Rutina' => array(
-			'className' => 'Rutina',
-			'foreignKey' => 'autor_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
 	);
 
 }

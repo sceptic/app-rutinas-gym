@@ -1,0 +1,39 @@
+<span style='color: #000'>10 frames</span>	<span style='color: #900'>9,984 KB</span>	<span style='color: #090'>127.01 ms</span>	<span style='color: #009' title='Quirksmode'><span style='color: #c00'>ON</span></span><br /><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr52c09934872bd-trace').style.display = (document.getElementById('cakeErr52c09934872bd-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(C:\appgym.com\app\webroot\/tmp/facturas/19.pdf) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP\Plugin\Dompdf\View\PdfView.php</b>, line <b>89</b>]<div id="cakeErr52c09934872bd-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr52c09934872bd-code').style.display = (document.getElementById('cakeErr52c09934872bd-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr52c09934872bd-context').style.display = (document.getElementById('cakeErr52c09934872bd-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr52c09934872bd-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000"><span style="color: #0000BB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dompdf</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set_paper</span><span style="color: #007700">(</span><span style="color: #0000BB">$paperSize</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$paperOrientation</span><span style="color: #007700">);</span></span></code>
+<code><span style="color: #000000"><span style="color: #0000BB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dompdf</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">render</span><span style="color: #007700">();</span></span></code>
+<span class="code-highlight"><code><span style="color: #000000"><span style="color: #0000BB">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">WWW_ROOT</span><span style="color: #007700">.</span><span style="color: #DD0000">'/tmp/facturas/'</span><span style="color: #007700">.</span><span style="color: #0000BB">basename</span><span style="color: #007700">(</span><span style="color: #0000BB">$_SERVER&nbsp;</span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_URI'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #0000BB">$dompdf</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">output</span><span style="color: #007700">());&nbsp;</span></span></code></span></pre><pre id="cakeErr52c09934872bd-context" class="cake-context" style="display: none;">$view = null
+$layout = null
+$dir = object(SplFileInfo) {
+	
+}
+$errors = &#039;&#039;
+$download = false
+$name = &#039;entrenamiento.pdf&#039;
+$paperOrientation = &#039;portrait&#039;
+$paperSize = &#039;legal&#039;
+$dompdf = object(DOMPDF) {
+	_messages =&gt; array()
+	_base_protocol =&gt; &#039;&#039;
+	[protected] _xml =&gt; object(DOMDocument) {}
+	[protected] _tree =&gt; object(Frame_Tree) {}
+	[protected] _css =&gt; object(Stylesheet) {}
+	[protected] _pdf =&gt; object(CPDF_Adapter) {}
+	[protected] _paper_size =&gt; &#039;legal&#039;
+	[protected] _paper_orientation =&gt; &#039;portrait&#039;
+	[protected] _callbacks =&gt; array()
+	[protected] _base_host =&gt; &#039;&#039;
+	[protected] _base_path =&gt; &#039;/&#039;
+	[protected] _protocol =&gt; &#039;C:\appgym.com\app\webroot\&#039;
+	[protected] _http_context =&gt; null
+	[private] _cache_id =&gt; null
+	[private] _start_time =&gt; (float) 1388353844.4297
+	[private] _system_locale =&gt; null
+	[private] _locale_standard =&gt; true
+	[private] _default_view =&gt; &#039;Fit&#039;
+	[private] _default_view_options =&gt; array()
+	[private] _quirksmode =&gt; true
+}</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+PdfView::render() - APP\Plugin\Dompdf\View\PdfView.php, line 89
+Controller::render() - CORE\Cake\Controller\Controller.php, line 952
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 160
+[main] - APP\webroot\index.php, line 108</pre></div></pre>
