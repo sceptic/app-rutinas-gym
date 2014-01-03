@@ -48,12 +48,12 @@ class EmailConfig {
 
 	public $gmail = array(
 		'transport' => 'Smtp',
-		'from' => array('xxxxxxxxxxxxxxxxx' => 'appgym'),
+		'from' => array('adriswbm@gmail.com' => 'appgym'),
 		'host' => 'ssl://smtp.gmail.com',
 		'port' => 465,
-		'timeout' => 30,
-		'username' => 'xxxxxxxxxxxxxxxxxxx',
-		'password' => 'xxxxxxxxxxxxxxxxxxx',
+		'timeout' => 90,
+		'username' => 'adriswbm@gmail.com',
+		'password' => '@sceptic84@',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',

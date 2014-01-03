@@ -10,14 +10,24 @@
         <strong><font><font class="">! El email ya está registrado !</font></font></strong>
 </div>
 {%endif%}
-{{macros.input('Nombre', 'text', 'data[Autor][nombre]', 'EntrenoTitulo',data.Autor.nombre)}}
-{{macros.input('email', 'email', 'data[Autor][email]', 'email', data.Autor.email)}}
-{{macros.input('Password', 'password', 'data[Autor][password]', 'password','')}}
+{{macros.input('Nombre', 'text', 'data[Autor][nombre]', 'EntrenoTitulo',data.Autor.nombre,1,errors.nombre[0])}}
+{{macros.input('Email', 'email', 'data[Autor][email]', 'email', data.Autor.email,1, errors.email[0])}}
+{{macros.input('Password', 'password', 'data[Autor][password]', 'password','',1, errors.password[0])}}
 
-{{macros.submit('Restrarme')}}
+{{macros.submit('Registrarme')}}
 </form>
 {% endblock %}	
 
 {% block scripts %}
+<script >
+$(document).ready(onload)
 
+function onload(){
+
+	$('#submit').click(function(event) {
+		$('#crud').submit();
+	});
+}
+
+</script>
 {% endblock %}

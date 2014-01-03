@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('Sanitize', 'Utility');
 /**
  * Autor Model
  *
@@ -16,14 +17,32 @@ class Autor extends AppModel {
  */
 	public $displayField = 'nombre';
 
+	
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasMany associations
- *
- * @var array
- */
+ 	 public $validate = array(
+        'nombre' => array(
+            'alphaNumeric' => array(
+                'rule'     => 'alphaNumeric',
+                'required' => true,
+                'message'  => 'Solo se admiten letras y números'
+            ),
+            'between' => array(
+                'rule'    => array('between', 5, 20),
+                'message' => 'Debe tener entre 5 y 20 carácteres'
+            )
+        ),
+        'password' => array(
+            'rule'    => 'alphaNumeric',
+            'required' => true,
+            //'message' => 'Alphabets and numbers only'
+        ),
+        'email' => array(
+            'rule'    => 'email',
+            'required' => true,
+            'message' => 'Debe ser un email válido'
+        ),
+        
+    );
 	public $hasMany = array(
 
 		'Entrenamiento' => array(
@@ -40,5 +59,13 @@ class Autor extends AppModel {
 			'counterQuery' => ''
 		),
 	);
+
+
+    public function saniData(&$data){
+     
+         $data['Autor']['nombre'] = Sanitize::clean( $data['Autor']['nombre']);
+         $data['Autor']['password'] = Sanitize::paranoid( $data['Autor']['password']);
+         $data['Autor']['email'] = Sanitize::clean($data['Autor']['email']);
+    }
 
 }

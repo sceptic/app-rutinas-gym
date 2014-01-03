@@ -17,11 +17,11 @@
 	{%endif%}
 
     {# Entradas formulario #}
-	{{macros.input('Título entrenamiento', 'text', 'data[Entrenamiento][nombre]', 'EntrenoTitulo', data.Entrenamiento.nombre)}}
+	{{macros.input('Título entrenamiento', 'text', 'data[Entrenamiento][nombre]', 'EntrenoTitulo', data.Entrenamiento.nombre,1,errors.nombre[0])}}
 
-	{{macros.input('Descripción', 'text', 'data[Entrenamiento][description]', 'EntrenoTitulo',data.Entrenamiento.description)}}
+	{{macros.input('Descripción', 'text', 'data[Entrenamiento][description]', 'EntrenoTitulo',data.Entrenamiento.description,1,errors.description[0])}}
 
-	{{macros.editor('Entrenamiento', 'data[Entrenamiento][content]', 'data[Entrenamiento][content]',data.Entrenamiento.content)}}
+	{{macros.editor('Entrenamiento', 'data[Entrenamiento][content]', 'data[Entrenamiento][content]',data.Entrenamiento.content,1,errors.content[0])}}
 
 	{{macros.submit('Guardar entrenamiento')}}
 

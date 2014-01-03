@@ -69,7 +69,7 @@ class AppController extends Controller {
 			if(isset($data['email_login']) && isset($data['password_login']))
 			{
 				
-				$user= $this->Autor->find('first', array('conditions'=>array('Autor.password'=> md5(sha1($data['password_login'])), 'Autor.email' => $data['email_login'])));
+				$user= $this->Autor->find('first', array('conditions'=>array('Autor.password'=> md5(sha1($data['password_login'])), 'Autor.active'=>'1', 'Autor.email' => $data['email_login'])));
 				$this->set(compact('data'));	
 				$this->Auth->login($user);
 			}

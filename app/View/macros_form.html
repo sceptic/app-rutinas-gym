@@ -1,18 +1,26 @@
-{% macro input(label, type, name, id, value) %}
+{% macro input(label, type, name, id, value, is_required,error) %}
 	<label for='{{id}}'>{{label}}</label>
-	<input class='form-control' type='{{type}}' name="{{name}}" id='{{id}}' value='{{value}}'/><br/>
+	<input class='form-control' type='{{type}}' {%if is_required %}required='true' placeholder='{{label}}'{%endif%} name="{{name}}" id='{{id}}' value='{{value}}'/>
+	{%if error%}
+		<label for='{{id}}' class='alert alert-danger'> <img src='/img/test-fail-icon.png'/> &nbsp;{{error}}</label>
+	{%endif%}
+	<br/>
 {% endmacro %}
 
 
-{% macro editor(label, name, id, value) %}
+{% macro editor(label, name, id, value, is_required,error) %}
 	<label for='{{id}}'>{{label}}</label>
-	<textarea class='form-control editor' rows='25'  name='{{name}}' id='{{id}}'/>{{value}}</textarea><br/>
+	<textarea class='form-control editor' rows='25' {%if is_required %}required='true' placeholder='{{label}}'{%endif%} name='{{name}}' id='{{id}}'/>{{value}}</textarea>
+	{%if error%}
+		<label for='{{id}}' class='alert alert-danger'> <img src='/img/test-fail-icon.png'/> &nbsp;{{error}}</label>
+	{%endif%}
+	<br/>
 {% endmacro %}
 
 
 {%macro submit(text)%}
 <br/>
-<p><a href='#'  id='submit' class="btn btn-default">{{text}}</a></p>
+<p><input type='submit' value='{{text}}' class="btn btn-default"/></p>
 {% endmacro %}
 
 {%macro success(text)%}

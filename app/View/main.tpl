@@ -11,10 +11,10 @@
     
     
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/sticky-footer-navbar.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/js/editor/bootstrap-wysihtml5.css"></link>
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet"></link>
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-js/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -41,7 +41,9 @@
  <body style="" screen_capture_injected="true">
 
     <!-- Wrap all page content here -->
-    <div id="wrap">
+    <div id="wrap" style='width: 100%
+height: 100%;
+min-height: 100%;'>
 
       <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +65,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/">Mis rutinas</a></li>
+                  <li><a href="/mis-rutinas">Mis rutinas</a></li>
                 </ul>
               </li>
               {%else%}
@@ -91,11 +93,14 @@
             
           </div><!--/.nav-collapse -->
         </div>
+        <div class='divImgs'></div>
       </div>
 
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
+
+          <br/>
           {% block header %}{% endblock %}  
         </div>
         {% block content %}{% endblock %}
@@ -110,7 +115,7 @@
       <div class="container">
         <p class="text-muted">Creado por phpymas.com</p>
       </div>
-</div>
+    </div>
 
 		
 			{% block scripts %}{% endblock %}

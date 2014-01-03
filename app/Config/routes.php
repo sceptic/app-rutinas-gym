@@ -24,13 +24,18 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+	Router::connect('/', array('controller' => 'pages', 'action' => 'home', 'home'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-	Router::connect('/crear-rutina', array('controller' => 'Entrenamientos', 'action' => 'add'));
+	Router::connect('/home/:event', array('controller' => 'pages', 'action' => 'home'),array( 'pass' => array('event'),'event' => '[a-z\-]+'));
 	Router::connect('/registro', array('controller' => 'Autors', 'action' => 'registro'));
+	Router::connect('/crear-rutina', array('controller' => 'Entrenamientos', 'action' => 'add'));
+	Router::connect('/rutinas/:id', array('controller' => 'Entrenamientos', 'action' => 'entrenamiento'),array( 'pass' => array('id'),'id' => '[0-9]+'));
+	Router::connect('/editar-rutina/:id', array('controller' => 'Entrenamientos', 'action' => 'edit'),array( 'pass' => array('id'),'id' => '[0-9]+'));
+	Router::connect('/borrar-rutina/:id', array('controller' => 'Entrenamientos', 'action' => 'delete'),array( 'pass' => array('id'),'id' => '[0-9]+'));
+	Router::connect('/mis-rutinas', array('controller' => 'Entrenamientos', 'action' => 'misRutinas'));
+	
 
 	Router::parseExtensions('csv'); 
 	Router::parseExtensions('pdf');
